@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.cuong02n.sudokujavafx.SudokuBoardController"
+      spacing="10" alignment="CENTER">
+    <StackPane fx:id="stackPane">
+        <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" />
+    </StackPane>
+</VBox>

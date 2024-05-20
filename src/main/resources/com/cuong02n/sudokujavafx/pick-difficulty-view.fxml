@@ -1,0 +1,14 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Slider?>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" spacing="20.0" fx:controller="com.cuong02n.sudokujavafx.PickDifficultyController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Slider fx:id="easySlider" min="4" max="16" value="4" majorTickUnit="1" minorTickCount="0" snapToTicks="true" showTickMarks="true" showTickLabels="true" prefWidth="250"/>
+    <Button text="Easy" fx:id="easyButton" styleClass="button-easy"/>
+    <Button text="Medium" fx:id="mediumButton" styleClass="button-medium"/>
+    <Button text="Hard" fx:id="hardButton" styleClass="button-hard"/>
+    <Button text="Impossible" fx:id="impossibleButton" styleClass="button-impossible"/>
+</VBox>
