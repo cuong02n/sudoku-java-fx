@@ -32,7 +32,7 @@ public class SudokuHomeController {
         });
 
         playButton.setOnAction(e -> {
-            Main.changeScreen("pick-difficulty-view.fxml","css/difficulty.css");
+            Main.changeScreen("pick-difficulty-view.fxml");
         });
 
         // Bạn có thể thêm các hành động cho các nút khác ở đây

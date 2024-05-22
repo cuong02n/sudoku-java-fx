@@ -1,6 +1,5 @@
 package com.cuong02n.sudokujavafx;
 
-import javax.swing.text.Utilities;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
@@ -278,23 +277,21 @@ public class SudokuUtils {
 
     private static void makeRandomForHardMode(int hardMode) {
         double removeRate;
-        switch (hardMode){
-            case 0->
-                removeRate = 0.3;
-            case 1->
-                removeRate = 0.4;
-            case 2->
-                removeRate = 0.55;
-            case 3->
-                removeRate = 0.7;
-            default->
-                removeRate = 0;
+        switch (hardMode) {
+            case 0 -> removeRate = 0.3;
+            case 1 -> removeRate = 0.35;
+            case 2 -> removeRate = 0.4;
+            case 3 -> removeRate = 0.65;
+            default -> removeRate = 0;
         }
-        Random r=  new Random();
-        for(int i = 0;i<boardNow.length;i++){
+        Random r = new Random();
+        fixed = new boolean[currentSize][currentSize];
+        for (int i = 0; i < boardNow.length; i++) {
             for (int j = 0; j < boardNow[i].length; j++) {
-                if(r.nextDouble()<removeRate){
+                if (r.nextDouble() < removeRate) {
                     boardNow[i][j] = 0;
+                } else {
+                    fixed[i][j] = true;
                 }
             }
         }
@@ -345,6 +342,9 @@ public class SudokuUtils {
     }
 
     public static boolean checkCellValid(int i, int j, int[][] board) {
+        if (board[i][j] == 0) {
+            return false;
+        }
         for (int i1 = 0; i1 < board.length; i1++) {
             if (board[i1][j] == board[i][j] && i1 != i)
                 return false;
@@ -366,16 +366,29 @@ public class SudokuUtils {
     }
 
     public static int getIntByStr(String x) {
-        return switch (x) {
-            case "A" -> 10;
-            case "B" -> 11;
-            case "C" -> 12;
-            case "D" -> 13;
-            case "E" -> 14;
-            case "F" -> 15;
-            case "G" -> 16;
-            default -> throw new RuntimeException("NOT EXCEPTED VALUE");
-        };
+        switch (x) {
+            case "A":
+                return 10;
+            case "B":
+                return 11;
+            case "C":
+                return 12;
+            case "D":
+                return 13;
+            case "E":
+                return 14;
+            case "F":
+                return 15;
+            case "G":
+                return 16;
+            default:
+                try {
+                    return Integer.parseInt(x);
+                } catch (NumberFormatException e) {
+                    Main.showWarning(e.getMessage());
+                    return 0;
+                }
+        }
     }
 
     public static String getStrByInt(int x) {

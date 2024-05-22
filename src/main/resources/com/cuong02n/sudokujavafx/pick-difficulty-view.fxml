@@ -2,7 +2,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Slider?>
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" spacing="20.0" fx:controller="com.cuong02n.sudokujavafx.PickDifficultyController">
+<VBox alignment="CENTER" stylesheets="@css/difficulty.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" spacing="20.0" fx:controller="com.cuong02n.sudokujavafx.PickDifficultyController">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
