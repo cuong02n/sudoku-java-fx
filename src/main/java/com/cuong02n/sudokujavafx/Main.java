@@ -54,13 +54,13 @@ public class Main extends Application {
     }
 
 
-    public static void showAlertEndgame() {
+    public static void showAlertEndgame(String text) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initModality(Modality.WINDOW_MODAL);
         alert.initOwner(stage);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText("Bạn đã thắng chế độ này, hãy chuyển sang phần tiếp theo nếu muốn");
+        alert.setContentText("Bạn đã thắng chế độ này, hãy chuyển sang phần tiếp theo nếu muốn "+"\n"+"Thời gian hoàn thành: "+text);
 
         gotoMain();
         alert.showAndWait();

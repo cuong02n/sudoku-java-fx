@@ -29,8 +29,11 @@ public class SudokuBoardController {
     int currentI = 0;
     int currentJ = 0;
 
+    long start;
+
     @FXML
     public void initialize() {
+        start = System.currentTimeMillis();
         SudokuUtils.generateSudokuBoard(currentSize, Main.currentHardMode);
         setHintAction();
         setResetAction();
@@ -77,7 +80,7 @@ public class SudokuBoardController {
         canvas = new Canvas(currentSize * cellSize, currentSize * cellSize);
         canvas.setMouseTransparent(true);
         switch (currentSize) {
-            case 4 ->drawLineSudoku4(cellSize);
+            case 4 -> drawLineSudoku4(cellSize);
             case 9 -> drawLineSudoku9(cellSize);
             case 16 -> drawLineSudoku16(cellSize);
         }
@@ -92,7 +95,7 @@ public class SudokuBoardController {
 
 
     private void drawTextField(double cellSize) {
-        System.out.println("cell size: "+cellSize);
+        System.out.println("cell size: " + cellSize);
         for (int i = 0; i < currentSize; i++) {
             for (int j = 0; j < currentSize; j++) {
                 textFields[i][j] = new TextField();
@@ -102,7 +105,7 @@ public class SudokuBoardController {
                 addTextEventListener(i, j);
 
                 textFields[i][j].setAlignment(Pos.CENTER);
-                textFields[i][j].setFont(new Font("consolas",Config.textSizes[currentSize]));
+                textFields[i][j].setFont(new Font("consolas", Config.textSizes[currentSize]));
 
                 gridPane.add(textFields[i][j], j, i);
             }
@@ -213,7 +216,8 @@ public class SudokuBoardController {
                 setCellValue(i, j, text);
             }
             if (SudokuUtils.validSudokuBoard(boardNow)) {
-                Main.showAlertEndgame();
+
+                Main.showAlertEndgame((System.currentTimeMillis()-start)/1000+" giây.");
             }
         });
         textFields[i][j].focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -262,13 +266,6 @@ public class SudokuBoardController {
         }
     }
 
-    void removeWarningFalse(int i, int j) {
-
-    }
-
-    void setWarningFalse(int i, int j) {
-
-    }
 
     public void setCellValue(int i, int j, String value) {
         if (!value.isEmpty()) {
@@ -278,8 +275,8 @@ public class SudokuBoardController {
                 boardNow[i][j] = valueInt;
                 return;
             }
-            System.out.print("value int: "+valueInt+", ");
-            System.out.println("after change to string: "+getStrByInt(valueInt));
+            System.out.print("value int: " + valueInt + ", ");
+            System.out.println("after change to string: " + getStrByInt(valueInt));
             textFields[i][j].setText(SudokuUtils.getStrByInt(valueInt));
             boardNow[i][j] = valueInt;
             textFields[i][j].positionCaret(1);
