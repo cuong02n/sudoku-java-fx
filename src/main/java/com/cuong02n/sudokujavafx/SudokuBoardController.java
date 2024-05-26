@@ -80,7 +80,8 @@ public class SudokuBoardController {
         canvas = new Canvas(currentSize * cellSize, currentSize * cellSize);
         canvas.setMouseTransparent(true);
         switch (currentSize) {
-            case 4 -> drawLineSudoku4(cellSize);
+            case 4 ->drawLineSudoku4(cellSize);
+            case 7 -> drawLineSudoku7(cellSize);
             case 9 -> drawLineSudoku9(cellSize);
             case 16 -> drawLineSudoku16(cellSize);
         }
@@ -155,6 +156,20 @@ public class SudokuBoardController {
         }
     }
 
+    public void drawLineSudoku7(double cellSize){
+        stackPane.getChildren().add(canvas);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0,0,cellSize*currentSize,cellSize*currentSize);
+
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(5);
+
+        for(int[] positions: Config.strokeThickLineSize7){
+            gc.strokeLine(positions[0]*cellSize,positions[1]*cellSize,positions[2]*cellSize,positions[3]*cellSize);
+        }
+
+    }
+
     public void drawLineSudoku9(double cellSize) {
         stackPane.getChildren().add(canvas);
 
@@ -172,6 +187,7 @@ public class SudokuBoardController {
             }
         }
     }
+
 
     private void drawLineSudoku16(double cellSize) {
         stackPane.getChildren().add(canvas);
