@@ -268,20 +268,19 @@ public class SudokuUtils {
         solveSudoku(0, 0);
 
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                boardNow[i][j] = solution[i][j];
-            }
+            System.arraycopy(solution[i], 0, boardNow[i], 0, size);
         }
         SudokuUtils.makeRandomForHardMode(hardMode);
     }
 
     private static void makeRandomForHardMode(int hardMode) {
+        System.out.println(hardMode);
         double removeRate;
         switch (hardMode) {
             case 0 -> removeRate = 0.3;
-            case 1 -> removeRate = 0.35;
-            case 2 -> removeRate = 0.4;
-            case 3 -> removeRate = 0.65;
+            case 1 -> removeRate = 0.45;
+            case 2 -> removeRate = 0.6;
+            case 3 -> removeRate = 0.75;
             default -> removeRate = 0;
         }
         Random r = new Random();
@@ -331,6 +330,15 @@ public class SudokuUtils {
     }
 
     public static boolean validSudokuBoard(int[][] board) {
+        for (int[] ints : board) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (!checkCellValid(i, j, board)) {
@@ -381,6 +389,10 @@ public class SudokuUtils {
                 return 15;
             case "G":
                 return 16;
+            case "H":
+                return 17;
+            case "I":
+                return 18;
             default:
                 try {
                     return Integer.parseInt(x);
@@ -403,6 +415,8 @@ public class SudokuUtils {
             case 14 -> "E";
             case 15 -> "F";
             case 16 -> "G";
+            case 17 -> "H";
+            case 18 -> "I";
             default -> throw new RuntimeException("NOT EXCEPTED VALUE");
         };
     }

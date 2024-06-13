@@ -6,7 +6,7 @@
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-    <Slider fx:id="easySlider" min="4" max="16" value="4" majorTickUnit="1" minorTickCount="0" snapToTicks="true" showTickMarks="true" showTickLabels="true" prefWidth="250"/>
+    <Slider fx:id="easySlider" min="4" max="18" value="4" majorTickUnit="1" minorTickCount="0" snapToTicks="true" showTickMarks="true" showTickLabels="true" prefWidth="250"/>
     <Button text="Easy" fx:id="easyButton" styleClass="button-easy"/>
     <Button text="Medium" fx:id="mediumButton" styleClass="button-medium"/>
     <Button text="Hard" fx:id="hardButton" styleClass="button-hard"/>

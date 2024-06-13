@@ -2,8 +2,8 @@ package com.cuong02n.sudokujavafx;
 
 public class Config {
 
-    public static double[] cellSizes = {0, 0, 0, 0, 100, 0, 0, 60, 0, 50, 0, 0, 0, 0, 0, 0, 26};
-    public static double[] textSizes = {0, 0, 0, 0, 40, 0, 0, 32, 0, 30, 0, 0, 0, 0, 0, 0, 15};
+    public static double[] cellSizes = {0, 0, 0, 0, 100, 0, 0, 60, 0, 50, 0, 0, 0, 0, 0, 0, 26,0,22};
+    public static double[] textSizes = {0, 0, 0, 0, 40, 0, 0, 32, 0, 25, 0, 0, 0, 0, 0, 0, 15,0,12};
     
     public static int[][] strokeThickLineSize7 = {// x1,y1,x2,y2
             {0,0,0,7},

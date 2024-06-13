@@ -80,10 +80,11 @@ public class SudokuBoardController {
         canvas = new Canvas(currentSize * cellSize, currentSize * cellSize);
         canvas.setMouseTransparent(true);
         switch (currentSize) {
-            case 4 ->drawLineSudoku4(cellSize);
+            case 4 -> drawLineSudoku4(cellSize);
             case 7 -> drawLineSudoku7(cellSize);
             case 9 -> drawLineSudoku9(cellSize);
             case 16 -> drawLineSudoku16(cellSize);
+            case 18 -> drawLineSudoku18(cellSize);
         }
         drawTextField(cellSize);
 
@@ -143,29 +144,30 @@ public class SudokuBoardController {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, cellSize * currentSize, cellSize * currentSize);
+
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(5);
+
         for (int i = 0; i <= currentSize; i++) {
             if (i % 2 == 0) {
-                // Vẽ các đường ngang lớn
-                gc.setStroke(Color.BLACK);
-                gc.setLineWidth(5);
+
                 gc.strokeLine(0, i * cellSize, currentSize * cellSize, i * cellSize);
 
-                // Vẽ các đường dọc lớn
                 gc.strokeLine(i * cellSize, 0, i * cellSize, currentSize * cellSize);
             }
         }
     }
 
-    public void drawLineSudoku7(double cellSize){
+    public void drawLineSudoku7(double cellSize) {
         stackPane.getChildren().add(canvas);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0,0,cellSize*currentSize,cellSize*currentSize);
+        gc.clearRect(0, 0, cellSize * currentSize, cellSize * currentSize);
 
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(5);
 
-        for(int[] positions: Config.strokeThickLineSize7){
-            gc.strokeLine(positions[0]*cellSize,positions[1]*cellSize,positions[2]*cellSize,positions[3]*cellSize);
+        for (int[] positions : Config.strokeThickLineSize7) {
+            gc.strokeLine(positions[0] * cellSize, positions[1] * cellSize, positions[2] * cellSize, positions[3] * cellSize);
         }
 
     }
@@ -207,6 +209,27 @@ public class SudokuBoardController {
         }
     }
 
+    private void drawLineSudoku18(double cellSize) {
+        stackPane.getChildren().add(canvas);
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, cellSize * currentSize, cellSize * currentSize);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(5);
+
+        for (int i = 0; i <= currentSize; i++) {
+            if (i % 6 == 0) {
+                // Vẽ các đường dọc lớn
+                gc.strokeLine(i * cellSize, 0, i * cellSize, currentSize * cellSize);
+            }
+        }
+        for (int j = 0; j <= currentSize; j++) {
+            if (j % 3 == 0) {
+                gc.strokeLine(0, j * cellSize, currentSize * cellSize, j * cellSize);
+            }
+        }
+    }
+
     private void setDisableChangeForFixedCell() {
         for (int i = 0; i < currentSize; i++) {
             for (int j = 0; j < currentSize; j++) {
@@ -233,7 +256,7 @@ public class SudokuBoardController {
             }
             if (SudokuUtils.validSudokuBoard(boardNow)) {
 
-                Main.showAlertEndgame((System.currentTimeMillis()-start)/1000+" giây.");
+                Main.showAlertEndgame((System.currentTimeMillis() - start) / 1000 + " giây.");
             }
         });
         textFields[i][j].focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -299,17 +322,13 @@ public class SudokuBoardController {
         }
     }
 
-    public int getCellValue(int i, int j) {
-        return SudokuUtils.getIntByStr(textFields[i][j].getText());
-    }
-
-    public void backToHome(ActionEvent actionEvent) {
-        Main.gotoMain();
-    }
-
     private void addStyle(int i, int j, String style) {
         String oldStyle = textFields[i][j].getStyle();
         String newStyle = oldStyle + " " + style + "; ";
         textFields[i][j].setStyle(newStyle);
+    }
+
+    public void backToHome(ActionEvent actionEvent) {
+        Main.gotoMain();
     }
 }

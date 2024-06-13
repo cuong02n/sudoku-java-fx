@@ -23,12 +23,12 @@ public class PickDifficultyController {
             Main.currentHardMode = 1;
             Main.changeScreen("sudoku-board-view.fxml");
         });
-        mediumButton.setOnAction(e -> {
+        hardButton.setOnAction(e -> {
             Main.currentSize = (int) easySlider.getValue();
             Main.currentHardMode = 2;
             Main.changeScreen("sudoku-board-view.fxml");
         });
-        mediumButton.setOnAction(e -> {
+        impossibleButton.setOnAction(e -> {
             Main.currentSize = (int) easySlider.getValue();
             Main.currentHardMode = 3;
             Main.changeScreen("sudoku-board-view.fxml");
